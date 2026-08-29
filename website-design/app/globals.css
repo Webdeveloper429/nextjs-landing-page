@@ -1,0 +1,708 @@
+@import "tailwindcss";
+
+:root {
+  --background: #08080b;
+  --card: #0c0c10;
+  --border: rgba(255, 255, 255, 0.1);
+  --muted: #88858f;
+  --text: #f5f3f8;
+  --purple: #8061f1;
+  --purple-light: #8b6cf5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background: #08080b;
+  color: var(--text);
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+button,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* ================================
+   PAGE
+================================ */
+
+.dashboard-page {
+  min-height: 100vh;
+  padding: 28px 34px 70px;
+  background:
+    radial-gradient(
+      circle at 16% 10%,
+      rgba(104, 63, 220, 0.12),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 78% 32%,
+      rgba(76, 38, 180, 0.07),
+      transparent 30%
+    ),
+    #08080b;
+}
+
+.dashboard-container {
+  width: min(100%, 1500px);
+  margin: 0 auto;
+}
+
+/* ================================
+   HEADER
+================================ */
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 34px;
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.dashboard-logo {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  color: white;
+  background:
+    linear-gradient(
+      145deg,
+      #9678ff 0%,
+      #6f4bea 55%,
+      #5734c8 100%
+    );
+  box-shadow:
+    0 0 25px rgba(112, 72, 239, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.brand-area h1 {
+  margin: 0 0 3px;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.brand-meta {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #7e7b84;
+  font-size: 12px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sync-status,
+.export-button {
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  background: rgba(12, 12, 16, 0.8);
+  color: #b9b6be;
+}
+
+.sync-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
+  font-size: 12px;
+}
+
+.sync-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #69df83;
+  box-shadow: 0 0 0 4px rgba(105, 223, 131, 0.08);
+}
+
+.export-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 16px;
+  transition: 0.2s ease;
+}
+
+.export-button:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* ================================
+   FILTERS
+================================ */
+
+.filters {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.filter-wrapper {
+  position: relative;
+}
+
+.filter-wrapper label {
+  display: block;
+  margin: 0 0 8px;
+  color: #7f7c86;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+}
+
+.filter-select {
+  width: 100%;
+  height: 47px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 11px;
+  background: rgba(12, 12, 15, 0.75);
+  color: #e8e5eb;
+  text-align: left;
+}
+
+.filter-select svg {
+  color: #77737c;
+}
+
+.hidden-native-select {
+  display: none;
+}
+
+/* ================================
+   PIPELINE CARD
+================================ */
+
+.pipeline-card {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 17px;
+  background:
+    radial-gradient(
+      circle at 73% 35%,
+      rgba(91, 53, 197, 0.035),
+      transparent 35%
+    ),
+    rgba(10, 10, 13, 0.92);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+}
+
+.pipeline-header {
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+}
+
+.pipeline-title,
+.live-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pipeline-title {
+  color: #85818b;
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+}
+
+.pipeline-title svg {
+  color: #85818b;
+}
+
+.live-status {
+  color: #85818e;
+  font-size: 12px;
+}
+
+.live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #8061f1;
+  box-shadow:
+    0 0 0 4px rgba(128, 97, 241, 0.08),
+    0 0 14px rgba(128, 97, 241, 0.8);
+}
+
+/* ================================
+   CONTENT
+================================ */
+
+.pipeline-content {
+  display: grid;
+  grid-template-columns: 31% 69%;
+  min-height: 630px;
+}
+
+.stats-panel {
+  padding: 45px 28px 35px;
+  border-right: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.stat-eyebrow {
+  display: block;
+  color: #88848e;
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: 0.07em;
+}
+
+.booking-rate {
+  margin-top: 14px;
+  color: #8667f3;
+  font-size: clamp(58px, 5vw, 82px);
+  line-height: 0.95;
+  font-weight: 550;
+  letter-spacing: -0.055em;
+  text-shadow: 0 0 35px rgba(128, 97, 241, 0.08);
+}
+
+.rate-change {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 16px;
+  color: #74717a;
+  font-size: 12px;
+}
+
+.negative {
+  color: #e35f65;
+}
+
+.booking-description {
+  max-width: 340px;
+  margin: 23px 0 0;
+  color: #c4c1c8;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.booking-description strong {
+  color: #e3e0e6;
+  font-weight: 600;
+}
+
+.crm-description {
+  max-width: 350px;
+  margin: 4px 0 0;
+  color: #77747d;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+/* ================================
+   MINI CHART
+================================ */
+
+.daily-leads {
+  margin-top: 31px;
+}
+
+.mini-chart {
+  height: 105px;
+  margin-top: 16px;
+  overflow: hidden;
+}
+
+.mini-chart-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.chart-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2px;
+  color: #77747d;
+  font-size: 11px;
+}
+
+/* ================================
+   FUNNEL
+================================ */
+
+.funnel-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 45px 30px 30px;
+}
+
+.funnel-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.funnel-step {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.funnel-bar {
+  position: relative;
+  min-height: 84px;
+  display: flex;
+  align-items: center;
+  padding: 0 22px;
+  border-radius: 8px;
+  color: white;
+  background:
+    linear-gradient(
+      100deg,
+      #8c6df6 0%,
+      #7657df 45%,
+      #4c32bd 100%
+    );
+  box-shadow:
+    0 10px 30px rgba(73, 42, 166, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  transition: transform 0.2s ease;
+}
+
+.funnel-bar::after {
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: -23px;
+  height: 30px;
+  z-index: -1;
+  background: linear-gradient(
+    to bottom,
+    rgba(92, 59, 197, 0.25),
+    transparent
+  );
+  filter: blur(10px);
+}
+
+.funnel-step:nth-of-type(5) .funnel-bar,
+.funnel-step:nth-of-type(7) .funnel-bar {
+  min-height: 80px;
+}
+
+.funnel-step:nth-of-type(3) .funnel-bar {
+  min-height: 84px;
+}
+
+.funnel-value {
+  font-size: 36px;
+  line-height: 1;
+  font-weight: 550;
+  letter-spacing: -0.035em;
+}
+
+.funnel-label {
+  margin-left: 13px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.rate-badge {
+  position: relative;
+  z-index: 2;
+  margin: 8px 0;
+  padding: 7px 13px;
+  border: 1px solid rgba(128, 97, 241, 0.28);
+  border-radius: 999px;
+  background: rgba(5, 5, 7, 0.96);
+  box-shadow:
+    0 0 0 5px rgba(128, 97, 241, 0.02),
+    0 5px 18px rgba(0, 0, 0, 0.25);
+  color: #6ee18b;
+  font-size: 14px;
+  font-weight: 550;
+}
+
+.rate-badge span {
+  margin-left: 4px;
+  color: #aaa7b0;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+/* ================================
+   FUNNEL DESCRIPTION
+================================ */
+
+.funnel-description {
+  max-width: 100%;
+  margin: 25px 0 0;
+  color: #77747c;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 1100px) {
+  .dashboard-page {
+    padding: 24px;
+  }
+
+  .pipeline-content {
+    grid-template-columns: 35% 65%;
+  }
+
+  .stats-panel {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  .funnel-panel {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .booking-rate {
+    font-size: 58px;
+  }
+}
+
+@media (max-width: 850px) {
+  .dashboard-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .pipeline-content {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-panel {
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  }
+
+  .funnel-panel {
+    min-height: 560px;
+  }
+}
+
+@media (max-width: 640px) {
+  .dashboard-page {
+    padding: 18px 14px 40px;
+  }
+
+  .brand-meta {
+    flex-wrap: wrap;
+  }
+
+  .filters {
+    grid-template-columns: 1fr;
+  }
+
+  .pipeline-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    padding: 18px;
+  }
+
+  .stats-panel {
+    padding: 30px 20px;
+  }
+
+  .funnel-panel {
+    padding: 30px 15px 25px;
+  }
+
+  .funnel-bar {
+    min-height: 70px;
+    padding: 0 15px;
+  }
+
+  .funnel-value {
+    font-size: 28px;
+  }
+
+  .funnel-label {
+    font-size: 11px;
+  }
+
+  .rate-badge {
+    font-size: 12px;
+  }
+
+  .export-button span {
+    display: none;
+  }
+
+  .export-button {
+    width: 42px;
+    padding: 0;
+  }
+
+  .sync-status {
+    font-size: 11px;
+  }
+}
+/* ================================
+   CUSTOM DROPDOWN
+================================ */
+
+.filter-wrapper {
+  position: relative;
+}
+
+.filter-select {
+  position: relative;
+  z-index: 5;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.filter-select:hover,
+.filter-select.active {
+  border-color: rgba(128, 97, 241, 0.45);
+  background: rgba(15, 14, 20, 0.95);
+}
+
+.filter-select.active svg {
+  transform: rotate(180deg);
+}
+
+.filter-select svg {
+  transition: transform 0.2s ease;
+}
+
+.dropdown-menu {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 7px);
+  left: 0;
+  width: 100%;
+  padding: 6px;
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 11px;
+
+  background: rgba(15, 14, 19, 0.98);
+
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.45),
+    0 0 30px rgba(94, 61, 190, 0.08);
+
+  backdrop-filter: blur(16px);
+
+  animation: dropdownOpen 0.15s ease-out;
+}
+
+.dropdown-option {
+  width: 100%;
+  min-height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 11px;
+
+  border: 0;
+  border-radius: 7px;
+
+  background: transparent;
+
+  color: #aaa7b0;
+
+  font-size: 12px;
+  text-align: left;
+
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.dropdown-option:hover {
+  background: rgba(128, 97, 241, 0.1);
+  color: #eeeaf5;
+}
+
+.dropdown-option.selected {
+  background: rgba(128, 97, 241, 0.12);
+  color: #a88eff;
+}
+
+.check {
+  color: #8b6cf5;
+  font-size: 14px;
+}
+
+@keyframes dropdownOpen {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
